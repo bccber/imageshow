@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <title>ImageShow</title>
+    <link href="//static.qiushibaike.com/css/dist/web/v4/app.min.css?v=278c4b2fc766d3eda307bf413a1abbc7"
+     rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="content" class="main">
+    <div class="content-block clearfix">
+        <div class="col1 old-style-col1">
+            <div>
+                <a target="_blank" style="font-size:18px" href="/login">登录</a> |
+                <a target="_blank" style="font-size:18px" href="/register">注册</a> |
+                <a target="_blank" style="font-size:18px" href="/checkImg">审核图片</a>
+            </div>
+
+            {{range .list}}
+                <div class="article block untagged mb15 typs_hot">
+                    <a href="" target="_blank" class="contentHerf">
+                        <div class="content">
+                            <span>{{.Title}}</span>
+                        </div>
+                    </a>
+                    <!-- 图片或gif -->
+                    <div class="thumb">
+                        <a href="/article?id={{.Id}}" target="_blank">
+                            <img src="/static{{.Url}}" class="illustration" width="100%" height="auto">
+                        </a>
+                    </div>
+
+                    <div class="stats">
+                        <!-- 笑脸、评论数等 -->
+                        <span class="stats-vote"><i class="number">{{.Like_Count}}</i> 好笑</span>
+                        <span class="stats-comments">
+                            <span class="dash"> · </span>
+                            <i class="number">{{.Comment_Count}}</i> 评论
+                        </span>
+                    </div>
+
+                    <div class="stats-buttons bar clearfix">
+                        <ul class="clearfix">
+                            <li class="up">
+                                <a href="/api/like?id={{.Id}}" target="_blank" class="voting">
+                                    <i></i>
+                                    <span class="number hidden"></span>
+                                </a>
+                            </li>
+
+                            <li class="comments">
+                                <a href="/article?id={{.Id}}" class="qiushi_comments" target="_blank">
+                                    <i></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="single-clear"></div>
+                </div>
+            {{end}}
+
+            <!-- 全局翻页组件 -->
+            <ul class="pagination">
+                <li>
+                    <a href="?a=prev&page={{.pagePrev}}&id1={{.maxId}}&id2={{.minId}}" rel="nofollow">
+                        <span class="current">上一页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="?a=next&page={{.pageNext}}&id1={{.maxId}}&id2={{.minId}}" rel="nofollow">
+                        <span class="current">下一页</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

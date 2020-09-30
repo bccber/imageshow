@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <title>ImageShow</title>
+    <link href="//static.qiushibaike.com/css/dist/web/v4/app.min.css?v=278c4b2fc766d3eda307bf413a1abbc7"
+     rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="content" class="main">
+    <div class="content-block clearfix">
+        <div class="col1 old-style-col1">
+            <div>
+                <a target="_blank" style="font-size:18px" href="/login">登录</a> |
+                <a target="_blank" style="font-size:18px" href="/register">注册</a> |
+                <a target="_blank" style="font-size:18px" href="/checkImg">审核图片</a>
+            </div>
+
+            {{range .list}}
+                <div class="article block untagged mb15 typs_hot">
+                    <a href="" target="_blank" class="contentHerf">
+                        <div class="content">
+                            <span>{{.Title}}</span>
+                        </div>
+                    </a>
+                    <!-- 图片或gif -->
+                    <div class="thumb">
+                        <a href="" target="_blank">
+                            <img src="{{.Url}}" class="illustration" width="100%" height="auto">
+                        </a>
+                    </div>
+                    <a target="_blank" style="font-size:18px" href="/api/checkImg?id={{.Id}}">审核通过</a>
+
+                    <div class="single-clear"></div>
+                </div>
+            {{end}}
+
+            <!-- 全局翻页组件 -->
+            <ul class="pagination">
+                <li>
+                    <a href="/checkImg">
+                        <span class="current">刷新</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <title>{{.img.Title}} - ImageShow</title>
+    <link href="//static.qiushibaike.com/css/dist/web/v4/app.min.css?v=278c4b2fc766d3eda307bf413a1abbc7"
+          rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+<div id="content" class="main">
+    <div class="content-block clearfix">
+        <div class="col1 new-style-col1" data-bj="False">
+            <h1 class="article-title">{{.img.Title}}</h1>
+            <div class="stats">
+                <span class="stats-time" id="createTime">{{.img.Created_Time}}</span>
+                <span class="stats-vote">好笑数：<i class="number">{{.img.Like_Count}}</i></span>
+            </div>
+
+            <div class="article block untagged noline">
+                <div class="image">
+                    <div class="content">{{.img.Title}}</div>
+                    <div class="thumb">
+                        <img src="/static{{.img.Url}}"/>
+                    </div>
+                </div>
+            </div>
+            <!-- 评论 -->
+            <div class="cmt-border-top"></div>
+
+            <form action="/api/comment" method="post">
+                <input type="hidden" name="id" value="{{.img.Id}}">
+                <input type="text" style="width:70%" name="content"><input type="submit" value="评论">
+            </form>
+            <!-- 所以评论-->
+            <div class="comments-wrapper">
+                <div class="comments">
+                    <div class="comments-list comments-all clearfix" style="border:none;margin-top:30px">
+                        <div class="comment-title">所有评论 ({{.img.Comment_Count}})</div>
+                        <div class="comment-list clearfix" style="display: block;">
+                            {{range .comments}}
+                                <div class="comment-block clearfix floor-8">
+                                    <div class="replay">{{.UserName}}：</a> <span class="body">{{.Content}}</span>
+                                    </div>
+                                </div>
+                            {{end}}
+                        </div>
+
+                        <!-- pagination-->
+                        <div class="pager">
+                            <ul class="comment-pagination pagination clearfix" style="display: block;">
+                                <li>
+                                    <a href="/article?id={{.img.Id}}&page={{.pagePrev}}" rel="nofollow">
+                                        <span class="current">上一页</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/article?id={{.img.Id}}&page={{.pageNext}}" rel="nofollow">
+                                        <span class="current">下一页</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    Date.prototype.format = function (format) {
+        var o = {
+            "M+": this.getMonth() + 1, //month
+            "d+": this.getDate(), //day
+            "h+": this.getHours(), //hour
+            "m+": this.getMinutes(), //minute
+            "s+": this.getSeconds(), //second
+            "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+            "S": this.getMilliseconds() //millisecond
+        }
+        if (/(y+)/.test(format)) format = format.replace(RegExp.$1,
+            (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+        for (var k in o) if (new RegExp("(" + k + ")").test(format))
+            format = format.replace(RegExp.$1,
+                RegExp.$1.length == 1 ? o[k] :
+                    ("00" + o[k]).substr(("" + o[k]).length));
+        return format;
+    }
+
+    let ct = document.getElementById("createTime");
+    let d = new Date(parseInt(ct.innerText) * 1000);
+    ct.innerText = d.format("yyyy-MM-dd hh:mm:ss");
+</script>
+
+</body>
+</html>

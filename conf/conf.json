@@ -1,0 +1,15 @@
+{
+    "spider_db": "root:123456@tcp(127.0.0.1:3306)/imagespider_db?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+    "master_db": [
+        "root:123456@tcp(127.0.0.1:3306)/imageshow_db_1?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+        "root:123456@tcp(127.0.0.1:3306)/imageshow_db_2?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+        "root:123456@tcp(127.0.0.1:3306)/imageshow_db_3?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+        "root:123456@tcp(127.0.0.1:3306)/imageshow_db_4?charset=utf8&loc=Asia%2FShanghai&parseTime=true"
+    ],
+    "slave_db": [
+        "root:123456@tcp(127.0.0.1:3307)/imageshow_db_1?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+        "root:123456@tcp(127.0.0.1:3307)/imageshow_db_2?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+        "root:123456@tcp(127.0.0.1:3307)/imageshow_db_3?charset=utf8&loc=Asia%2FShanghai&parseTime=true",
+        "root:123456@tcp(127.0.0.1:3307)/imageshow_db_4?charset=utf8&loc=Asia%2FShanghai&parseTime=true"
+    ]
+}
